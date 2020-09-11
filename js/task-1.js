@@ -50,7 +50,15 @@ function onGallaryClick(event) {
 
 function onOpenModal(url) {
   refs.overlay.addEventListener('click', event => {
-    onCloseModal();
+    if (event.target.nodeName !== 'IMG') {
+      onCloseModal();
+    }
+  });
+
+  window.addEventListener('keydown', e => {
+    if (e.code === 'Escape') {
+      onCloseModal();
+    }
   });
 
   refs.modal.classList.add('is-open');
