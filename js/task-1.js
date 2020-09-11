@@ -6,6 +6,7 @@ const refs = {
   modal: document.querySelector('.js-lightbox'),
   btnCloseModal: document.querySelector('button[data-action="close-lightbox"]'),
   modalLinkImage: document.querySelector('.lightbox__image'),
+  overlay: document.querySelector('.lightbox__overlay'),
 };
 
 function getGalleryMarkup(gallery) {
@@ -44,9 +45,14 @@ function onGallaryClick(event) {
 
   const bigImageURL = event.target.dataset.source;
   onOpenModal(bigImageURL);
+  // closeInOverlay();
 }
 
 function onOpenModal(url) {
+  refs.overlay.addEventListener('click', event => {
+    onCloseModal();
+  });
+
   refs.modal.classList.add('is-open');
   refs.modalLinkImage.src = url;
 }
